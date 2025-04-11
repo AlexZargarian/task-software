@@ -1,0 +1,12 @@
+# Message Bus
+nats-py==2.2.0
+
+# PostgreSQL
+psycopg2-binary==2.9.6
+SQLAlchemy==2.0.19
+
+# Configuration
+python-dotenv==1.0.0
+
+# Testing
+pytest==7.3.1

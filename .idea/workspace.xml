@@ -5,26 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67b222ec-939a-4324-85a4-d72552795a3a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/software-engineering.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nuts-subscriber-app/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nuts-subscriber-app/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nuts-subscriber-app/api_layer/subscriber.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nuts-subscriber-app/data_layer/db.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nuts-subscriber-app/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nuts-subscriber-app/schema.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nuts-subscriber-app/service_layer/processor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/data/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/data/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/data/repository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/scripts/init.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/service/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/service/processor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/tests/test_api.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/tests/test_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/tests/test_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuts-subscriber-app/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/app/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuts-subscriber-app/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/app/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuts-subscriber-app/api_layer/subscriber.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuts-subscriber-app/data_layer/db.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuts-subscriber-app/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuts-subscriber-app/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/subscriber.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuts-subscriber-app/service_layer/processor.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -70,7 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1744306745815</updated>
       <workItem from="1744306746622" duration="693000" />
-      <workItem from="1744307808466" duration="327000" />
+      <workItem from="1744307808466" duration="4221000" />
     </task>
     <servers />
   </component>
@@ -82,7 +96,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
