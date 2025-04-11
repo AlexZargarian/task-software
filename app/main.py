@@ -1,12 +1,38 @@
 import asyncio
 import signal
 import os
+import time
+import psycopg2
 from app.api.subscriber import NutsSubscriber
 from app.service.processor import MessageProcessor
 from app.data.repository import MessageRepository
 
 
+def wait_for_db(host: str, port: int, retries: int = 10, delay: float = 1.0):
+    print("Waiting for the database to be ready...")
+    for attempt in range(1, retries + 1):
+        try:
+            conn = psycopg2.connect(
+                host=host,
+                port=port,
+                user="postgres",
+                password="postgres",
+                dbname="nutsdb"
+            )
+            conn.close()
+            print("Database is ready.")
+            return
+        except psycopg2.OperationalError:
+            print(f"Attempt {attempt}: Database not ready yet. Retrying in {delay} seconds...")
+            time.sleep(delay)
+    print("Could not connect to the database.")
+    exit(1)
+
+
 async def main():
+    # Wait for PostgreSQL to be ready before proceeding
+    wait_for_db("db", 5432)
+
     # Initialize the layers
     repository = MessageRepository()
     processor = MessageProcessor(repository)

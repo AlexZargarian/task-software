@@ -1,9 +1,3 @@
--- Create database if not exists
-CREATE DATABASE IF NOT EXISTS nutsdb;
-
--- Connect to the database
-\c nutsdb;
-
 -- Create messages table if not exists
 CREATE TABLE IF NOT EXISTS messages (
     id SERIAL PRIMARY KEY,
