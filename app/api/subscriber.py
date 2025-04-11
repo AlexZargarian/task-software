@@ -1,8 +1,7 @@
-import asyncio
 import json
 import nats
 import os
-from typing import List, Callable, Any
+from typing import List
 
 from app.service.processor import MessageProcessor
 

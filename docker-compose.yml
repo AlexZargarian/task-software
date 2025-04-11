@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .                 # Use current directory as build context
+      dockerfile: ./Dockerfile  # Explicit path to Dockerfile
+    depends_on:
+      - db
+      - nats
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/nutsdb
+      - NATS_URL=nats://nats:4222
+      - SUBSCRIBE_SUBJECTS=nut.messages,nut.events
+    volumes:
+      - ./:/app
+    restart: unless-stopped
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=nutsdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  nats:
+    image: nats:2.9.15
+    ports:
+      - "4222:4222"  # NATS client port
+      - "8222:8222"  # Monitoring UI (optional)
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
