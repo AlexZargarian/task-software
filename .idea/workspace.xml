@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67b222ec-939a-4324-85a4-d72552795a3a" name="Changes" comment="updated Docker, and main written, added a wait becouse of some issues. Next will do test">
-      <change afterPath="$PROJECT_DIR$/tests/test_api.py" afterDir="false" />
+    <list default="true" id="67b222ec-939a-4324-85a4-d72552795a3a" name="Changes" comment="api test added">
       <change afterPath="$PROJECT_DIR$/tests/test_data.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/tests/test_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nuts-subscriber-app/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/data/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/data/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data/repository.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,26 +38,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.app.app: Compose Deployment.executor": "Run",
-    "Docker.app/Dockerfile.executor": "Run",
-    "Docker.app: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "Python tests.Python tests for test_api.TestNutsSubscriber.executor": "Run",
-    "Python tests.Python tests for test_data.TestMessageRepository.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.app.app: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.app/Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.app: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_api.TestNutsSubscriber.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_data.TestMessageRepository.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -87,11 +89,15 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml" />
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
-      <deployment type="dockerfile" />
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
@@ -175,7 +181,8 @@
       <updated>1744306745815</updated>
       <workItem from="1744306746622" duration="693000" />
       <workItem from="1744307808466" duration="5016000" />
-      <workItem from="1744359529102" duration="6666000" />
+      <workItem from="1744359529102" duration="8776000" />
+      <workItem from="1744374802729" duration="645000" />
     </task>
     <task id="LOCAL-00001" summary="Commit while trying to set up docker">
       <option name="closed" value="true" />
@@ -209,7 +216,23 @@
       <option name="project" value="LOCAL" />
       <updated>1744371662680</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="updated Docker, and main written, added a wait becouse of some issues. Next will do test">
+      <option name="closed" value="true" />
+      <created>1744371756369</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1744371756369</updated>
+    </task>
+    <task id="LOCAL-00006" summary="api test added">
+      <option name="closed" value="true" />
+      <created>1744371961213</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1744371961213</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,7 +265,8 @@
     <MESSAGE value="Commit while trying to set up docker" />
     <MESSAGE value="Docker setup and some changes" />
     <MESSAGE value="updated Docker, and main written, added a wait becouse of some issues. Next will do test" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated Docker, and main written, added a wait becouse of some issues. Next will do test" />
+    <MESSAGE value="api test added" />
+    <option name="LAST_COMMIT_MESSAGE" value="api test added" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/software_engineering$.coverage" NAME=" Coverage Results" MODIFIED="1744370925952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />

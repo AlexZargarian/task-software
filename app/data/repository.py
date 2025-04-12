@@ -1,6 +1,6 @@
 import os
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, Session
 from contextlib import contextmanager
 
 from app.data.models import Base, Message
@@ -22,7 +22,7 @@ class MessageRepository:
         session = self.SessionLocal()
         try:
             yield session
-            session.commit()
+            session.commit()  # ✅ commit is handled here only
         except:
             session.rollback()
             raise
@@ -34,8 +34,7 @@ class MessageRepository:
         message = Message(content=content, subject=subject)
         with self.get_session() as session:
             session.add(message)
-            session.commit()
-            session.refresh(message)
+            session.refresh(message)  # ✅ removed extra session.commit()
         return message
 
     def get_all_messages(self):
