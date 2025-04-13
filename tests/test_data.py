@@ -1,65 +1,58 @@
 import pytest
-from unittest.mock import MagicMock
-from app.service.processor import MessageProcessor
+from app.data.repository import MessageRepository
 
 
-class TestMessageProcessor:
+# Create a fixture for the repository using SQLite in-memory database.
+@pytest.fixture
+def repository():
+    # Using in-memory SQLite ensures each test starts with a fresh database.
+    repo = MessageRepository(db_url="sqlite:///:memory:")
+    repo.create_tables()  # Initialize the tables before each test.
+    return repo
 
-    def setup_method(self):
-        self.mock_repository = MagicMock()
-        self.processor = MessageProcessor(repository=self.mock_repository)
 
-    def test_process_valid_message(self):
-        subject = "nut.test"
-        message = b'{"key": "value"}'
-        self.mock_repository.save_message.return_value.id = 1
-        self.mock_repository.save_message.return_value.timestamp.isoformat.return_value = "2023-01-01T00:00:00"
+def test_save_message(repository):
+    """
+    Test that saving a message correctly assigns an ID,
+    stores the correct content and subject, and sets a timestamp.
+    """
+    content = "Hello, testing data layer!"
+    subject = "nut.test"
+    message = repository.save_message(content, subject)
 
-        result = self.processor.process_message(subject, message)
+    # Verify the message is saved with an ID and proper fields.
+    assert message.id is not None, "Message ID should be set after saving"
+    assert message.content == content, "Content should match the input"
+    assert message.subject == subject, "Subject should match the input"
+    assert message.timestamp is not None, "A timestamp should be assigned"
 
-        self.mock_repository.save_message.assert_called_once()
-        assert result["status"] == "processed"
-        assert result["subject"] == subject
-        assert result["content"] == '{"key": "value"}'
 
-    def test_process_empty_message(self):
-        subject = "nut.test"
-        message = b'   '
+def test_get_all_messages(repository):
+    """
+    Test that get_all_messages returns all messages saved in the database.
+    """
+    # Save a couple of messages.
+    repository.save_message("Message 1", "nut.topic1")
+    repository.save_message("Message 2", "nut.topic2")
 
-        result = self.processor.process_message(subject, message)
+    messages = repository.get_all_messages()
+    assert isinstance(messages, list), "The result should be a list"
+    assert len(messages) == 2, "There should be exactly 2 messages saved"
 
-        self.mock_repository.save_message.assert_not_called()
-        assert result["status"] == "error"
-        assert "Empty message" in result["error"]
 
-    def test_process_invalid_json(self):
-        subject = "nut.test"
-        message = b'{not a real json}'
-        self.mock_repository.save_message.return_value.id = 2
-        self.mock_repository.save_message.return_value.timestamp.isoformat.return_value = "2023-01-01T00:00:00"
+def test_get_messages_by_subject(repository):
+    """
+    Test that filtering messages by subject returns only those that match.
+    """
+    # Save messages with different subjects.
+    repository.save_message("Message 1", "nut.topic1")
+    repository.save_message("Message 2", "nut.topic1")
+    repository.save_message("Message 3", "nut.topic2")
 
-        result = self.processor.process_message(subject, message)
+    topic1_messages = repository.get_messages_by_subject("nut.topic1")
+    assert isinstance(topic1_messages, list), "Filtered result should be a list"
+    assert len(topic1_messages) == 2, "There should be 2 messages with subject 'nut.topic1'"
 
-        self.mock_repository.save_message.assert_called_once()
-        assert result["status"] == "processed_raw"
-        assert result["content"] == "{not a real json}"
-
-    def test_process_message_with_whitespace(self):
-        subject = "nut.test"
-        message = b'    '
-
-        result = self.processor.process_message(subject, message)
-
-        self.mock_repository.save_message.assert_not_called()
-        assert result["status"] == "error"
-        assert "Empty message" in result["error"]
-
-    def test_process_message_exception(self):
-        subject = "nut.test"
-        message = b'some text'
-        self.mock_repository.save_message.side_effect = Exception("DB down")
-
-        result = self.processor.process_message(subject, message)
-
-        assert result["status"] == "error"
-        assert "DB down" in result["error"]
+    # Confirm all retrieved messages have the expected subject.
+    for message in topic1_messages:
+        assert message.subject == "nut.topic1", "Each message should have subject 'nut.topic1'"

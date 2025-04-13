@@ -31,7 +31,6 @@ class NutsSubscriber:
             print(f"Subscribed to {subject}")
 
     async def _message_handler(self, msg):
-        """Handle incoming messages"""
         subject = msg.subject
         data = msg.data
         print(f"Received message on {subject}")
@@ -39,19 +38,16 @@ class NutsSubscriber:
         # Process message using the service layer
         result = self.processor.process_message(subject, data)
 
-        # If the message has a reply subject, respond
         if msg.reply:
             response = json.dumps(result).encode()
             await self.client.publish(msg.reply, response)
 
     async def unsubscribe(self):
-        """Unsubscribe from all subjects"""
         for subscription in self.subscriptions:
             await subscription.unsubscribe()
         self.subscriptions = []
 
     async def close(self):
-        """Close the connection"""
         if self.client:
             await self.unsubscribe()
             await self.client.close()

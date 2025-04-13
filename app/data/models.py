@@ -1,10 +1,9 @@
-from datetime import datetime
-from sqlalchemy import Column, Integer, String, DateTime, Text, create_engine
 from sqlalchemy.orm import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import Column, Integer, String, DateTime, Text
+from datetime import datetime
 
+# Create the base class for declarative models.
 Base = declarative_base()
-
 
 class Message(Base):
     __tablename__ = 'messages'
